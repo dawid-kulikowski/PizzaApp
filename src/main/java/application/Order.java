@@ -6,11 +6,21 @@ public class Order {
     Pizza pizza;
     int quantity;
     double price;
+    boolean delivery;
+    double deliveryPrice;
     double totalPrice = 0;
     List<Order> orders = new ArrayList<>();
 
 
     static Scanner scanner = new Scanner(System.in);
+
+    public double getDeliveryPrice() {
+        return deliveryPrice;
+    }
+
+    public void setDeliveryPrice(double deliveryPrice) {
+        this.deliveryPrice = deliveryPrice;
+    }
 
     public Pizza getPizza() {
         return pizza;
@@ -22,6 +32,14 @@ public class Order {
 
     public double getPrice() {
         return price;
+    }
+
+    public boolean isDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(boolean delivery) {
+        this.delivery = delivery;
     }
 
     public void setPrice(double price) {
@@ -47,7 +65,7 @@ public class Order {
         System.out.println("2. Hawaii");
         System.out.println("3. Bolognese");
 
-        switch (choice = scanner.nextInt()) {
+        switch (scanner.nextInt()) {
             case 1:
                 pizza.setPizzaType(PizzaType.MARGHERITA);
                 break;
@@ -65,7 +83,7 @@ public class Order {
         System.out.println("1. Small");
         System.out.println("2. Large");
 
-        switch (choice = scanner.nextInt()) {
+        switch (scanner.nextInt()) {
             case 1:
                 pizza.setPizzaSize(PizzaSize.SMALL);
                 pizza.setPizzaPrice(pizza.getPizzaSize(), pizza.getPizzaType());
@@ -90,21 +108,37 @@ public class Order {
         System.out.println("1. YES");
         System.out.println("2. NO");
 
-        switch (choice = scanner.nextInt()) {
+        switch (scanner.nextInt()) {
             case 1:
                 addToOrder();
                 break;
             case 2:
+
+                System.out.println("DELIVERY?");
+                System.out.println("1. YES");
+                System.out.println("2. NO");
+
+                switch (scanner.nextInt()) {
+                    case 1:
+                        order.setDelivery(true);
+                        order.setDeliveryPrice(20);
+                        totalPrice += order.getDeliveryPrice();
+                        break;
+                    case 2:
+                        order.setDelivery(false);
+                        order.setDeliveryPrice(0);
+                        totalPrice += order.getDeliveryPrice();
+                        break;
+                    default:
+                        return;
+                }
+
                 orders.forEach((n) -> System.out.println(n.toString()));
-                System.out.println("Total order price is: " + totalPrice);
-
-
+                System.out.println( "Delivery Price: " + order.getDeliveryPrice() + " | Total order price is: " + totalPrice);
             default:
                 return;
         }
-
     }
-
 
     @Override
     public String toString() {
