@@ -1,9 +1,9 @@
 package application;
 
 public class Pizza {
-    PizzaType pizzaType;
-    PizzaSize pizzaSize;
-    double pizzaPrice;
+    private PizzaType pizzaType;
+    private PizzaSize pizzaSize;
+    private double pizzaPrice;
 
     public void setPizzaPrice(PizzaSize pizzaSize, PizzaType pizzaType) {
         if (pizzaSize == PizzaSize.SMALL) {

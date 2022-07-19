@@ -3,13 +3,13 @@ package application;
 import java.util.*;
 
 public class Order {
-    Pizza pizza;
-    int quantity;
-    double price;
-    boolean delivery;
-    double deliveryPrice;
-    double totalPrice = 0;
-    List<Order> orders = new ArrayList<>();
+    private Pizza pizza;
+    private int quantity;
+    private double price;
+    private boolean delivery;
+    private double deliveryPrice;
+    private double totalPrice = 0;
+    private List<Order> orders = new ArrayList<>();
 
 
     static Scanner scanner = new Scanner(System.in);
@@ -57,8 +57,6 @@ public class Order {
     public void addToOrder() {
         Order order = new Order();
         pizza = new Pizza();
-        int choice;
-
 
         System.out.println("CHOOSE YOUR PIZZA");
         System.out.println("1. Margherita");
@@ -132,9 +130,9 @@ public class Order {
                     default:
                         return;
                 }
-
                 orders.forEach((n) -> System.out.println(n.toString()));
                 System.out.println( "Delivery Price: " + order.getDeliveryPrice() + " | Total order price is: " + totalPrice);
+                break;
             default:
                 return;
         }
